@@ -1,9 +1,13 @@
+import os
 import sys
 import logging
 import time
 
 start_time = time.time()
 sys.dont_write_bytecode = True
+
+if not os.path.exists("logs"):
+    os.mkdir("logs")
 
 def get_runtime() -> float:
     return time.time() - start_time
@@ -25,7 +29,7 @@ console_hander = logging.StreamHandler()
 console_hander.setLevel(logging.DEBUG)
 
 file_hander = logging.FileHandler(
-    "editor-running.log", mode="w", encoding="UTF-8"
+    "logs/editor-running.log", mode="w", encoding="UTF-8"
 )
 
 file_hander.setLevel(logging.DEBUG)
